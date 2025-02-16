@@ -27,15 +27,15 @@ export async function updateProductMetafield(productId, priceUSD) {
   return response.data;
 }
 
-// Sync all product prices: fetch products, convert USD to TRY, and update prices
+// Sync all product prices: read USD prices, convert to TRY, and update product variants
 export async function syncAllProductPrices() {
   const exchangeRate = await fetchExchangeRate();
   const products = await getProducts();
   
   for (const product of products) {
     const productId = product.id;
-    // **FILL THIS IN:** Implement logic to retrieve the price_usd metafield for this product.
-    let priceUSD = null; // Retrieve this via additional API call if needed.
+    // **FILL THIS IN:** Retrieve the price_usd metafield value for this product.
+    let priceUSD = null; // Implement logic here to fetch the current USD price.
     if (priceUSD !== null) {
       const newTRYPrice = Math.round(priceUSD * exchangeRate);
       console.log(`Updating ${product.title}: USD ${priceUSD} -> TRY ${newTRYPrice}`);

@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
   if (!shop) {
     return res.status(400).send('Missing shop parameter');
   }
-  const scopes = 'read_products,write_products'; // Adjust scopes as needed
+  const scopes = 'read_products,write_products';
   // **FILL THIS IN:** Replace with your actual callback URL
   const redirectUri = encodeURIComponent('https://your-app-url.com/auth/callback');
   const installUrl = `https://${shop}/admin/oauth/authorize?client_id=${config.shopify.apiKey}&scope=${scopes}&redirect_uri=${redirectUri}&state=nonce&grant_options[]=per-user`;
